@@ -1,0 +1,15 @@
+import Quickshell
+import QtQuick
+
+Text {
+
+    text: Qt.formatDateTime(clock.date, "ddd dd MMM   HH:mm")
+    color: Theme.fg
+    font.family: Theme.font
+    font.weight: 900
+    font.pixelSize: Theme.xl
+    SystemClock {
+        id: clock
+        precision: SystemClock.Minutes
+    }
+}
