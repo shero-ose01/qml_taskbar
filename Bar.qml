@@ -1,5 +1,4 @@
 import Quickshell
-import Quickshell.Wayland
 import QtQuick.Layouts
 import QtQuick
 
@@ -31,6 +30,11 @@ PanelWindow {
         Item {
             Layout.fillWidth: true
         }
-        SysStats {}
+        RowLayout {
+            spacing: 20
+            SysStats {}
+            Volume {}
+            Battery {}
+        }
     }
 }

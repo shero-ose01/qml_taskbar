@@ -13,5 +13,5 @@ QtObject {
     readonly property string font: "JetBrainsMono Nerd Font Mono"
     readonly property int xs: 14
     readonly property int sm: 16
-    readonly property int xl: 19
+    readonly property int xl: 17
 }
