@@ -1,4 +1,4 @@
-# QML based Taskbar
+# QML/Quickshell based Taskbar
 
 A very minimalistic taskbar for my hyprland setup on my laptop. Workspaces, Date and Device Stats. Gruvbox Theme.
 
