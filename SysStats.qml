@@ -11,7 +11,7 @@ RowLayout {
 
     Process {
         id: cpuProc
-        command: ["head", "-1", "/proc/stat"]   // only the aggregate line
+        command: ["head", "-1", "/proc/stat"]
         stdout: StdioCollector {
             onStreamFinished: {
                 const f = text.trim().split(/\s+/);

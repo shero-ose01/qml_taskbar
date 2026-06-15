@@ -5,3 +5,4 @@ Workspaces      1.0 Workspaces.qml
 SysStats        1.0 SysStats.qml
 Battery         1.0 Battery.qml
 Volume          1.0 Volume.qml
+Network         1.0 Network.qml

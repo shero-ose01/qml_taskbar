@@ -35,6 +35,7 @@ PanelWindow {
             SysStats {}
             Volume {}
             Battery {}
+            Network {}
         }
     }
 }
