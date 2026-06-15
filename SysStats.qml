@@ -1,5 +1,4 @@
 import Quickshell.Io
-import Quickshell.Services.UPower
 import QtQuick
 import QtQuick.Layouts
 
