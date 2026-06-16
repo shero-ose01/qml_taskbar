@@ -1,6 +1,8 @@
 import Quickshell
 import QtQuick.Layouts
 import QtQuick
+import "./Components"
+import "./Style"
 
 PanelWindow {
     required property var modelData
