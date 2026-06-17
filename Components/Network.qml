@@ -7,6 +7,9 @@ RowLayout {
 
     property bool connectedToNetwork: false
     property int signalToNetwork: 0
+    property alias icon: networkIcon
+
+    signal iconClicked()
 
     Process {
         id: network
@@ -42,19 +45,15 @@ RowLayout {
         }
     }
 
-    Text {
-        font.family: Theme.font
+    SignalIcon {
+        id: networkIcon
+        strength: signalToNetwork
+        connected: connectedToNetwork
         font.pixelSize: Theme.icon_size
-        color: connectedToNetwork ? Theme.green : Theme.red
-        text: !connectedToNetwork ? "󰤮" : signalToNetwork < 10 ? "󰤯" : signalToNetwork < 25 ? "󰤟" : signalToNetwork < 50 ? "󰤢" : signalToNetwork < 75 ? "󰤥" : "󰤨"
 
-        /*
-         * 󰤮
-         * 󰤯
-         * 󰤟
-         * 󰤢
-         * 󰤥
-         * 󰤨
-         * */
+        MouseArea {
+            anchors.fill: parent
+            onClicked: iconClicked()
+        }
     }
 }

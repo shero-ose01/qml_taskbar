@@ -15,4 +15,5 @@ QtObject {
     readonly property int sm: 16
     readonly property int xl: 17
     readonly property int icon_size: 24
+    readonly property int padding: 15
 }

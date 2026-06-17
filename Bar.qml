@@ -3,8 +3,10 @@ import QtQuick.Layouts
 import QtQuick
 import "./Components"
 import "./Style"
+import "./Popups"
 
 PanelWindow {
+    id: bar
     required property var modelData
     screen: modelData
 
@@ -37,7 +39,24 @@ PanelWindow {
             SysStats {}
             Volume {}
             Battery {}
-            Network {}
+            Bluetooth {
+                id: bluetooth
+                onIconClicked: bluetoothPopup.visible = !bluetoothPopup.visible
+            }
+            Network {
+                id: network
+                onIconClicked: networkPopup.visible = !networkPopup.visible
+            }
         }
+    }
+    NetworkPopup {
+        id: networkPopup
+        bar: bar
+        icon: network.icon
+    }
+    BluetoothPopup {
+        id: bluetoothPopup
+        bar: bar
+        icon: bluetooth.icon
     }
 }

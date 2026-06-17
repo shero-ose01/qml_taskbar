@@ -6,3 +6,6 @@ SysStats        1.0 SysStats.qml
 Battery         1.0 Battery.qml
 Volume          1.0 Volume.qml
 Network         1.0 Network.qml
+SignalIcon      1.0 SignalIcon.qml
+Bluetooth       1.0 Bluetooth.qml
+BluetoothIcon   1.0 BluetoothIcon.qml

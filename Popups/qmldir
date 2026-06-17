@@ -1,0 +1,3 @@
+module MyBar.Popups
+NetworkPopup      1.0 NetworkPopup.qml
+BluetoothPopup    1.0 BluetoothPopup.qml
