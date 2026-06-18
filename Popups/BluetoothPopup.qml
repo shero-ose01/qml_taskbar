@@ -37,13 +37,13 @@ PopupWindow {
         command: ["bluetoothctl", "devices"]
         stdout: StdioCollector {
             onStreamFinished: {
-                devices = text.trim().split("\n")
-                    .filter(line => line.startsWith("Device "))
-                    .map(line => {
-                        const match = line.match(/^Device ([0-9A-Fa-f:]+) (.*)$/);
-                        return match ? { mac: match[1], name: match[2] } : null;
-                    })
-                    .filter(d => d !== null);
+                devices = text.trim().split("\n").filter(line => line.startsWith("Device ")).map(line => {
+                    const match = line.match(/^Device ([0-9A-Fa-f:]+) (.*)$/);
+                    return match ? {
+                        mac: match[1],
+                        name: match[2]
+                    } : null;
+                }).filter(d => d !== null);
             }
         }
     }
@@ -53,9 +53,7 @@ PopupWindow {
         command: ["bluetoothctl", "devices", "Connected"]
         stdout: StdioCollector {
             onStreamFinished: {
-                connectedMacs = text.trim().split("\n")
-                    .filter(line => line.startsWith("Device "))
-                    .map(line => line.split(" ")[1]);
+                connectedMacs = text.trim().split("\n").filter(line => line.startsWith("Device ")).map(line => line.split(" ")[1]);
             }
         }
     }
@@ -99,7 +97,9 @@ PopupWindow {
                 implicitHeight: row.implicitHeight
                 color: hover.hovered ? Theme.gray : "transparent"
 
-                HoverHandler { id: hover }
+                HoverHandler {
+                    id: hover
+                }
 
                 RowLayout {
                     id: row

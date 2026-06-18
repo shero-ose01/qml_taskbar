@@ -45,6 +45,38 @@ RowLayout {
         Component.onCompleted: running = true
     }
 
+    property int cpuTemp: 0
+
+    Process {
+        id: cpuTempProc
+        command: ["sh", "-c", "sensors | awk '/^(Tctl|Package id 0|Tdie):/ {gsub(/[+°C]/, \"\", $2); print $2; exit}'"]
+        stdout: StdioCollector {
+            onStreamFinished: {
+                const v = parseFloat(text.trim());
+                cpuTemp = isNaN(v) ? 0 : Math.round(v);
+            }
+        }
+        Component.onCompleted: running = true
+    }
+
+    property int gpuTemp: 0
+    property int gpuUsage: 0
+
+    Process {
+        id: gpuProc
+        command: ["sh", "-c", "nvidia-smi --query-gpu=temperature.gpu,utilization.gpu --format=csv,noheader,nounits"]
+        stdout: StdioCollector {
+            onStreamFinished: {
+                const parts = text.trim().split(",");
+                const t = parseInt(parts[0]);
+                const u = parseInt(parts[1]);
+                gpuTemp = isNaN(t) ? 0 : t;
+                gpuUsage = isNaN(u) ? 0 : u;
+            }
+        }
+        Component.onCompleted: running = true
+    }
+
     Timer {
         interval: 2000
         running: true
@@ -52,6 +84,8 @@ RowLayout {
         onTriggered: {
             cpuProc.running = true;
             ramProc.running = true;
+            cpuTempProc.running = true;
+            gpuProc.running = true;
         }
     }
 
@@ -59,7 +93,7 @@ RowLayout {
         font.family: Theme.font
         font.pixelSize: Theme.xs
         color: Theme.green
-        text: "CPU " + cpu + "%"
+        text: "CPU " + cpu + "% " + cpuTemp + "°C"
     }
 
     Text {
@@ -67,5 +101,12 @@ RowLayout {
         font.pixelSize: Theme.xs
         color: Theme.green
         text: "RAM " + ram + "%"
+    }
+
+    Text {
+        font.family: Theme.font
+        font.pixelSize: Theme.xs
+        color: Theme.green
+        text: "GPU " + gpuUsage + "% " + gpuTemp + "°C"
     }
 }
